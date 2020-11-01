@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'sayings.dart';
+import 'saying_card.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -32,9 +33,18 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.yellow,
       ),
       body: Column(
-        children: sayings.map((say) => Text('${say.text} - ${say.aurthor} - ${say.date}')).toList(),
+        children: sayings.map((saying) => SayingCard(
+            saying: saying,
+            delete: () {
+              setState(() {
+                sayings.remove(saying);
+              });
+            },
+        )).toList(),
       ),
 
     );
   }
 }
+
+
